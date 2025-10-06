@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  auto-confirm:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - IMAP_HOST=imap.question-solver.com
+      - IMAP_PORT=993
+      - IMAP_USER=pin1@question-solver.com
+      - IMAP_PASS=Tk84c3897
+      - MAILBOX=INBOX
+      - POLL_INTERVAL=1
+    restart: unless-stopped
