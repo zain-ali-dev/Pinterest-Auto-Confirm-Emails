@@ -28,6 +28,10 @@ _worker_thread = None
 _worker_stop_event = threading.Event()
 _worker_status = {"running": False, "processed_count": 0, "last_result": None}
 
+@app.route("/health")
+def health():
+    return "OK", 200
+
 def connect_imap():
     imap = imaplib.IMAP4_SSL(IMAP_HOST, IMAP_PORT, timeout=30)
     imap.login(IMAP_USER, IMAP_PASS)
@@ -237,4 +241,4 @@ def trigger_once():
 
 if __name__ == '__main__':
     start_worker()
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT','5000')), debug=False)
+    app.run(host="0.0.0.0", port=5000)
